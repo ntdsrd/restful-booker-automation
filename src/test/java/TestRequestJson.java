@@ -1,17 +1,10 @@
 import actions.commons.GlobalConstants;
-import actions.commons.PageGeneratorManager;
 import actions.json.CreateBookingJson;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class TestRequestJson {
-    CreateBookingJson createBookingJson;
-
-    @BeforeTest
-    public void initTest() {
-        createBookingJson = PageGeneratorManager.createBookingJson();
-    }
+    CreateBookingJson createBookingJson = new CreateBookingJson();
 
     @AfterTest
     public void afterTest() {
