@@ -11,7 +11,7 @@ public class GlobalConstants {
     public static SoftAssert softAssert = new SoftAssert();
     public static final String JSON = "application/json";
 
-    public static String load(String data) {
+    public static String loadProd(String value) {
         Properties properties;
         try {
             InputStream inputStream = new FileInputStream("src/main/resources/prod.properties");
@@ -20,7 +20,7 @@ public class GlobalConstants {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return properties.getProperty(data);
+        return properties.getProperty(value);
     }
 
     public static String JSON(String firstname,
