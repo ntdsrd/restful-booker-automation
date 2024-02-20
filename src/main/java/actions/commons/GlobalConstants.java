@@ -14,7 +14,7 @@ public class GlobalConstants {
     public static String load(String data) {
         Properties properties;
         try {
-            InputStream inputStream = new FileInputStream("src/main/resources/data.properties");
+            InputStream inputStream = new FileInputStream("src/main/resources/prod.properties");
             properties = new Properties();
             properties.load(inputStream);
         } catch (IOException e) {
