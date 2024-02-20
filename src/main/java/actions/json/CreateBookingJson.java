@@ -6,6 +6,7 @@ import kong.unirest.Unirest;
 import org.json.JSONObject;
 
 public class CreateBookingJson {
+    public static String bookingId;
     JSONObject jsonObject;
 
     public void PostRequest(String firstname,
@@ -31,7 +32,7 @@ public class CreateBookingJson {
     }
 
     public void GetBookingId() {
-        String bookingId = jsonObject.get("bookingid").toString();
+        bookingId = jsonObject.get("bookingid").toString();
         System.out.println("Booking ID: " + bookingId);
     }
 }
