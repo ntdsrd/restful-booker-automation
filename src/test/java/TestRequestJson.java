@@ -14,13 +14,14 @@ public class TestRequestJson {
     @Test(description = "POST: CreateBookingJson")
     public void CreateBookingJsonTest() {
         //post request
-        System.out.print("POST: ");
-        createBookingJson.PostRequest(GlobalConstants.load("firstname"),
-                GlobalConstants.load("lastname"),
-                GlobalConstants.load("totalprice"),
-                GlobalConstants.load("depositpaid"),
-                GlobalConstants.load("checkin"),
-                GlobalConstants.load("checkout"),
-                GlobalConstants.load("additionalneeds"));
+        createBookingJson.PostRequest(GlobalConstants.loadProd("firstname"),
+                GlobalConstants.loadProd("lastname"),
+                GlobalConstants.loadProd("totalprice"),
+                GlobalConstants.loadProd("depositpaid"),
+                GlobalConstants.loadProd("checkin"),
+                GlobalConstants.loadProd("checkout"),
+                GlobalConstants.loadProd("additionalneeds"));
+        //get booking id
+        createBookingJson.GetBookingId();
     }
 }
