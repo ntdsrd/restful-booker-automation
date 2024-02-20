@@ -1,10 +1,12 @@
 import actions.commons.GlobalConstants;
 import actions.json.CreateBookingJson;
+import actions.json.GetBookingJson;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
 public class TestRequestJson {
     CreateBookingJson createBookingJson = new CreateBookingJson();
+    GetBookingJson getBookingJson = new GetBookingJson();
 
     @AfterTest
     public void afterTest() {
@@ -23,5 +25,12 @@ public class TestRequestJson {
                 GlobalConstants.loadProd("additionalneeds"));
         //get booking id
         createBookingJson.GetBookingId();
+        System.out.println();
+    }
+
+    @Test(description = "GET: GetBookingJson")
+    public void GetBookingJsonTest() {
+        //get request
+        getBookingJson.GetRequest();
     }
 }
