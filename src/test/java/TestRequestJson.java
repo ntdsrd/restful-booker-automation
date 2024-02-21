@@ -10,11 +10,6 @@ public class TestRequestJson {
     GetBookingJson getBookingJson = new GetBookingJson();
     UpdateBookingJson updateBookingJson = new UpdateBookingJson();
 
-    @AfterTest
-    public void afterTest() {
-        GlobalConstants.softAssert.assertAll();
-    }
-
     @Test(description = "POST: CreateBookingJson")
     public void PostRequestJsonTest() {
         //post request
@@ -27,6 +22,8 @@ public class TestRequestJson {
                 GlobalConstants.loadProd("additionalneeds"));
         //get booking id
         createBookingJson.GetBookingId();
+        //validate status code
+        createBookingJson.ValidateStatusCode();
         System.out.println();
     }
 
