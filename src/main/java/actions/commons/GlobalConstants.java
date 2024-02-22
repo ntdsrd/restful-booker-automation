@@ -11,10 +11,10 @@ public class GlobalConstants {
     public static SoftAssert softAssert = new SoftAssert();
     public static final String JSON = "application/json";
 
-    public static String loadProd(String value) {
+    public static String loadProperties(String fileName, String value) {
         Properties properties;
         try {
-            InputStream inputStream = new FileInputStream("src/main/resources/prod.properties");
+            InputStream inputStream = new FileInputStream("src/main/resources/".concat(fileName).concat(".properties"));
             properties = new Properties();
             properties.load(inputStream);
         } catch (IOException e) {
