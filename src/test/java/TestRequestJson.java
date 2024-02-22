@@ -2,7 +2,6 @@ import actions.commons.GlobalConstants;
 import actions.json.CreateBookingJson;
 import actions.json.GetBookingJson;
 import actions.json.UpdateBookingJson;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
 public class TestRequestJson {
@@ -13,17 +12,17 @@ public class TestRequestJson {
     @Test(description = "POST: CreateBookingJson")
     public void PostRequestJsonTest() {
         //post request
-        createBookingJson.PostRequest(GlobalConstants.loadProd("firstname"),
-                GlobalConstants.loadProd("lastname"),
-                GlobalConstants.loadProd("totalprice"),
-                GlobalConstants.loadProd("depositpaid"),
-                GlobalConstants.loadProd("checkin"),
-                GlobalConstants.loadProd("checkout"),
-                GlobalConstants.loadProd("additionalneeds"));
+        createBookingJson.PostRequest(GlobalConstants.loadProperties("prod", "firstname"),
+                GlobalConstants.loadProperties("prod", "lastname"),
+                GlobalConstants.loadProperties("prod", "totalprice"),
+                GlobalConstants.loadProperties("prod", "depositpaid"),
+                GlobalConstants.loadProperties("prod", "checkin"),
+                GlobalConstants.loadProperties("prod", "checkout"),
+                GlobalConstants.loadProperties("prod", "additionalneeds"));
         //get booking id
         createBookingJson.GetBookingId();
         //validate status code
-        createBookingJson.ValidateStatusCode();
+        createBookingJson.ValidateStatusCode(GlobalConstants.loadProperties("test-data", "statusCode"));
         System.out.println();
     }
 
@@ -31,18 +30,20 @@ public class TestRequestJson {
     public void GetRequestJsonTest() {
         //get request
         getBookingJson.GetRequest();
+        //validate first name
+        getBookingJson.ValidateFirstName(GlobalConstants.loadProperties("test-data", "firstname"));
         System.out.println();
     }
 
     @Test(description = "PUT: UpdateBookingJson", dependsOnMethods = {"PostRequestJsonTest"})
     public void PutRequestJsonTest() {
         //put request
-        updateBookingJson.PutRequest(GlobalConstants.loadProd("firstname"),
-                GlobalConstants.loadProd("lastname"),
-                GlobalConstants.loadProd("totalprice"),
-                GlobalConstants.loadProd("depositpaid"),
-                GlobalConstants.loadProd("checkin"),
-                GlobalConstants.loadProd("checkout"),
-                GlobalConstants.loadProd("additionalneedsUpdate"));
+        updateBookingJson.PutRequest(GlobalConstants.loadProperties("prod", "firstname"),
+                GlobalConstants.loadProperties("prod", "lastname"),
+                GlobalConstants.loadProperties("prod", "totalprice"),
+                GlobalConstants.loadProperties("prod", "depositpaid"),
+                GlobalConstants.loadProperties("prod", "checkin"),
+                GlobalConstants.loadProperties("prod", "checkout"),
+                GlobalConstants.loadProperties("prod", "additionalneeds"));
     }
 }
