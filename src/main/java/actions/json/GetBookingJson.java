@@ -31,4 +31,16 @@ public class GetBookingJson {
         GlobalConstants.softAssert.assertEquals(firstNameResponse, firstName);
         GlobalConstants.softAssert.assertAll("Validate first name fail");
     }
+
+    public void ValidateLastName(String lastName) {
+        String lastNameResponse;
+        try {
+            lastNameResponse = jsonObject.getString("lastname");
+            System.out.println("LAST NAME: " + lastNameResponse);
+        } catch (Exception exception) {
+            throw new RuntimeException("GET LAST NAME FAIL");
+        }
+        GlobalConstants.softAssert.assertEquals(lastNameResponse, lastName);
+        GlobalConstants.softAssert.assertAll("Validate last name fail");
+    }
 }
