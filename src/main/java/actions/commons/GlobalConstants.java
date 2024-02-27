@@ -23,13 +23,13 @@ public class GlobalConstants {
         return properties.getProperty(value);
     }
 
-    public static String JSON(String firstname,
-                              String lastname,
-                              String totalprice,
-                              String depositpaid,
-                              String checkin,
-                              String checkout,
-                              String additionalneeds) {
+    public static String jsonFormat(String firstname,
+                                    String lastname,
+                                    String totalprice,
+                                    String depositpaid,
+                                    String checkin,
+                                    String checkout,
+                                    String additionalneeds) {
         return "{\n" +
                 "  \"firstname\": \"" + firstname + "\",\n" +
                 "  \"lastname\": \"" + lastname + "\",\n" +

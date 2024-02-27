@@ -10,30 +10,32 @@ public class TestRequestJson {
     UpdateBookingJson updateBookingJson = new UpdateBookingJson();
 
     @Test(description = "Post: CreateBookingJson")
-    public void PostRequestJsonTest() {
+    public void testPostRequestJson() {
         //post request
-        createBookingJson.PostRequest();
+        createBookingJson.postRequest();
         //get booking id
-        createBookingJson.GetBookingId();
+        createBookingJson.getBookingId();
         //validate status code
-        createBookingJson.ValidateStatusCode(GlobalConstants.loadProperties("test-data", "statusCode"));
+        createBookingJson.validateStatusCode(GlobalConstants.loadProperties("TestData", "statusCode"));
         System.out.println();
     }
 
-    @Test(description = "Get: GetBookingJson", dependsOnMethods = {"PostRequestJsonTest"})
-    public void GetRequestJsonTest() {
+    @Test(description = "Get: GetBookingJson", dependsOnMethods = {"testPostRequestJson"})
+    public void testGetRequestJson() {
         //get request
-        getBookingJson.GetRequest();
+        getBookingJson.getRequest();
         //validate first name
-        getBookingJson.ValidateFirstName(GlobalConstants.loadProperties("test-data", "firstname"));
+        getBookingJson.validateFirstName(GlobalConstants.loadProperties("TestData", "firstname"));
         //validate last name
-        getBookingJson.ValidateLastName(GlobalConstants.loadProperties("test-data", "lastname"));
+        getBookingJson.validateLastName(GlobalConstants.loadProperties("TestData", "lastname"));
         System.out.println();
     }
 
-    @Test(description = "Put: UpdateBookingJson", dependsOnMethods = {"PostRequestJsonTest"})
-    public void PutRequestJsonTest() {
+    @Test(description = "Put: UpdateBookingJson", dependsOnMethods = {"testPostRequestJson"})
+    public void testPutRequestJson() {
         //put request
-        updateBookingJson.PutRequest();
+        updateBookingJson.putRequest();
+        //validate information as needed
+        updateBookingJson.validateInformationAsNeeded(GlobalConstants.loadProperties("TestData", "additionalneeds"));
     }
 }

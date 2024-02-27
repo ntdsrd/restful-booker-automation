@@ -10,29 +10,29 @@ public class CreateBookingJson {
     HttpResponse<String> response;
     JSONObject jsonObject;
 
-    public void PostRequest() {
-        response = Unirest.post(GlobalConstants.loadProperties("prod", "url"))
+    public void postRequest() {
+        response = Unirest.post(GlobalConstants.loadProperties("Prod", "url"))
                 .contentType(GlobalConstants.JSON)
                 .accept(GlobalConstants.JSON)
-                .body(GlobalConstants.JSON(GlobalConstants.loadProperties("prod", "firstname"),
-                        GlobalConstants.loadProperties("prod", "lastname"),
-                        GlobalConstants.loadProperties("prod", "totalprice"),
-                        GlobalConstants.loadProperties("prod", "depositpaid"),
-                        GlobalConstants.loadProperties("prod", "checkin"),
-                        GlobalConstants.loadProperties("prod", "checkout"),
-                        GlobalConstants.loadProperties("prod", "additionalneeds")))
+                .body(GlobalConstants.jsonFormat(GlobalConstants.loadProperties("Prod", "firstname"),
+                        GlobalConstants.loadProperties("Prod", "lastname"),
+                        GlobalConstants.loadProperties("Prod", "totalprice"),
+                        GlobalConstants.loadProperties("Prod", "depositpaid"),
+                        GlobalConstants.loadProperties("Prod", "checkin"),
+                        GlobalConstants.loadProperties("Prod", "checkout"),
+                        GlobalConstants.loadProperties("Prod", "additionalneeds")))
                 .asString();
         jsonObject = new JSONObject(response.getBody());
         System.out.println("Post: " + response.getBody());
     }
 
-    public void GetBookingId() {
+    public void getBookingId() {
         bookingId = jsonObject.get("bookingid").toString();
         System.out.println("Booking id: " + bookingId);
 
     }
 
-    public void ValidateStatusCode(String statusCode) {
+    public void validateStatusCode(String statusCode) {
         String statusCodeResponse = String.valueOf(response.getStatus());
         System.out.println("Status code: " + statusCodeResponse + " " + response.getStatusText());
         GlobalConstants.softAssert.assertEquals(statusCodeResponse, statusCode);
