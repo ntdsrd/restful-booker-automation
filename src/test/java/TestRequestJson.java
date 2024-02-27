@@ -32,6 +32,8 @@ public class TestRequestJson {
         getBookingJson.GetRequest();
         //validate first name
         getBookingJson.ValidateFirstName(GlobalConstants.loadProperties("test-data", "firstname"));
+        //validate last name
+        getBookingJson.ValidateLastName(GlobalConstants.loadProperties("test-data", "lastname"));
         System.out.println();
     }
 
@@ -44,6 +46,6 @@ public class TestRequestJson {
                 GlobalConstants.loadProperties("prod", "depositpaid"),
                 GlobalConstants.loadProperties("prod", "checkin"),
                 GlobalConstants.loadProperties("prod", "checkout"),
-                GlobalConstants.loadProperties("prod", "additionalneeds"));
+                GlobalConstants.loadProperties("prod", "additionalneedsUpdate"));
     }
 }
