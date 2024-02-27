@@ -10,50 +10,31 @@ public class CreateBookingJson {
     HttpResponse<String> response;
     JSONObject jsonObject;
 
-    public void PostRequest(String firstname,
-                            String lastname,
-                            String totalprice,
-                            String depositpaid,
-                            String checkin,
-                            String checkout,
-                            String additionalneeds) {
-        try {
-            response = Unirest.post(GlobalConstants.loadProperties("prod", "url"))
-                    .contentType(GlobalConstants.JSON)
-                    .accept(GlobalConstants.JSON)
-                    .body(GlobalConstants.JSON(firstname,
-                            lastname,
-                            totalprice,
-                            depositpaid,
-                            checkin,
-                            checkout,
-                            additionalneeds))
-                    .asString();
-            jsonObject = new JSONObject(response.getBody());
-            System.out.println("POST: " + response.getBody());
-        } catch (Exception exception) {
-            throw new RuntimeException("SEND POST REQUEST FAIL");
-        }
+    public void PostRequest() {
+        response = Unirest.post(GlobalConstants.loadProperties("prod", "url"))
+                .contentType(GlobalConstants.JSON)
+                .accept(GlobalConstants.JSON)
+                .body(GlobalConstants.JSON(GlobalConstants.loadProperties("prod", "firstname"),
+                        GlobalConstants.loadProperties("prod", "lastname"),
+                        GlobalConstants.loadProperties("prod", "totalprice"),
+                        GlobalConstants.loadProperties("prod", "depositpaid"),
+                        GlobalConstants.loadProperties("prod", "checkin"),
+                        GlobalConstants.loadProperties("prod", "checkout"),
+                        GlobalConstants.loadProperties("prod", "additionalneeds")))
+                .asString();
+        jsonObject = new JSONObject(response.getBody());
+        System.out.println("Post: " + response.getBody());
     }
 
     public void GetBookingId() {
-        try {
-            bookingId = jsonObject.get("bookingid").toString();
-            System.out.println("BOOKING ID: " + bookingId);
-        } catch (Exception exception) {
-            throw new RuntimeException("GET BOOKING ID FAIL");
-        }
+        bookingId = jsonObject.get("bookingid").toString();
+        System.out.println("Booking id: " + bookingId);
 
     }
 
     public void ValidateStatusCode(String statusCode) {
-        String statusCodeResponse;
-        try {
-            statusCodeResponse = String.valueOf(response.getStatus());
-            System.out.println("STATUS CODE: " + statusCodeResponse + " " + response.getStatusText());
-        } catch (Exception exception) {
-            throw new RuntimeException("GET STATUS CODE FAIL");
-        }
+        String statusCodeResponse = String.valueOf(response.getStatus());
+        System.out.println("Status code: " + statusCodeResponse + " " + response.getStatusText());
         GlobalConstants.softAssert.assertEquals(statusCodeResponse, statusCode);
         GlobalConstants.softAssert.assertAll("Validate status code fail");
     }

@@ -9,16 +9,10 @@ public class TestRequestJson {
     GetBookingJson getBookingJson = new GetBookingJson();
     UpdateBookingJson updateBookingJson = new UpdateBookingJson();
 
-    @Test(description = "POST: CreateBookingJson")
+    @Test(description = "Post: CreateBookingJson")
     public void PostRequestJsonTest() {
         //post request
-        createBookingJson.PostRequest(GlobalConstants.loadProperties("prod", "firstname"),
-                GlobalConstants.loadProperties("prod", "lastname"),
-                GlobalConstants.loadProperties("prod", "totalprice"),
-                GlobalConstants.loadProperties("prod", "depositpaid"),
-                GlobalConstants.loadProperties("prod", "checkin"),
-                GlobalConstants.loadProperties("prod", "checkout"),
-                GlobalConstants.loadProperties("prod", "additionalneeds"));
+        createBookingJson.PostRequest();
         //get booking id
         createBookingJson.GetBookingId();
         //validate status code
@@ -26,7 +20,7 @@ public class TestRequestJson {
         System.out.println();
     }
 
-    @Test(description = "GET: GetBookingJson", dependsOnMethods = {"PostRequestJsonTest"})
+    @Test(description = "Get: GetBookingJson", dependsOnMethods = {"PostRequestJsonTest"})
     public void GetRequestJsonTest() {
         //get request
         getBookingJson.GetRequest();
@@ -37,15 +31,9 @@ public class TestRequestJson {
         System.out.println();
     }
 
-    @Test(description = "PUT: UpdateBookingJson", dependsOnMethods = {"PostRequestJsonTest"})
+    @Test(description = "Put: UpdateBookingJson", dependsOnMethods = {"PostRequestJsonTest"})
     public void PutRequestJsonTest() {
         //put request
-        updateBookingJson.PutRequest(GlobalConstants.loadProperties("prod", "firstname"),
-                GlobalConstants.loadProperties("prod", "lastname"),
-                GlobalConstants.loadProperties("prod", "totalprice"),
-                GlobalConstants.loadProperties("prod", "depositpaid"),
-                GlobalConstants.loadProperties("prod", "checkin"),
-                GlobalConstants.loadProperties("prod", "checkout"),
-                GlobalConstants.loadProperties("prod", "additionalneedsUpdate"));
+        updateBookingJson.PutRequest();
     }
 }
