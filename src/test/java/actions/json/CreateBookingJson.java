@@ -29,7 +29,6 @@ public class CreateBookingJson {
     public void getBookingId() {
         bookingId = jsonObject.get("bookingid").toString();
         System.out.println("Booking id: " + bookingId);
-
     }
 
     public void validateStatusCode(String statusCode) {
