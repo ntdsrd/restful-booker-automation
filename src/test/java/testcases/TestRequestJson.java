@@ -1,3 +1,5 @@
+package testcases;
+
 import actions.commons.GlobalConstants;
 import actions.json.CreateBookingJson;
 import actions.json.GetBookingJson;
