@@ -14,6 +14,7 @@ public class GlobalConstants {
     public static final String JSON_HEADER = "application/json";
     public static final String XML_CONTENT_TYPE = "text/xml";
     public static final String XML_ACCEPT = "application/xml";
+    public static final String XML_RESPONSE = "src/test/java/schemas/Response.xml";
 
     public static String loadProperties(String fileName, String value) {
         Properties properties;
@@ -27,8 +28,12 @@ public class GlobalConstants {
         return properties.getProperty(value);
     }
 
-    public static String readSchemas(String fileExtension) throws IOException {
+    public static String jsonSchema(String fileExtension) throws IOException {
         return new String(Files.readAllBytes(Paths.get("src/test/java/schemas/Schema.".concat(fileExtension))));
+    }
+
+    public static String xmlSchema(String fileName) {
+        return "src/test/java/schemas/".concat(fileName + "Schema.xsd");
     }
 
     public static String jsonFormat(String firstname,
