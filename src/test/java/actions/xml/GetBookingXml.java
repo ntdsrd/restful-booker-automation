@@ -23,4 +23,11 @@ public class GetBookingXml {
         GlobalConstants.softAssert.assertEquals(firstNameResponse, firstName);
         GlobalConstants.softAssert.assertAll("Validate first name fail");
     }
+
+    public void validateLastName(String lastName) {
+        String lastNameResponse = jsonObject.getJSONObject("booking").getString("lastname");
+        System.out.println("Last name: " + lastNameResponse);
+        GlobalConstants.softAssert.assertEquals(lastNameResponse, lastName);
+        GlobalConstants.softAssert.assertAll("Validate last name fail");
+    }
 }
