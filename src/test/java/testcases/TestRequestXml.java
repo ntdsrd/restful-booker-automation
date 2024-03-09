@@ -19,6 +19,8 @@ public class TestRequestXml {
         createBookingXml.getBookingId();
         //validate status code
         createBookingXml.validateStatusCode(GlobalConstants.loadProperties("TestData", "statusCode"));
+        //validate for api schema
+        createBookingXml.validateForApiSchema();
         System.out.println("--------------------------------------------------");
     }
 
