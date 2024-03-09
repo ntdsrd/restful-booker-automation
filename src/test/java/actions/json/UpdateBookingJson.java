@@ -3,7 +3,12 @@ package actions.json;
 import actions.commons.GlobalConstants;
 import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;
+import org.everit.json.schema.Schema;
+import org.everit.json.schema.loader.SchemaLoader;
 import org.json.JSONObject;
+import org.json.JSONTokener;
+
+import java.io.IOException;
 
 public class UpdateBookingJson {
     JSONObject jsonObject;
@@ -30,5 +35,21 @@ public class UpdateBookingJson {
         System.out.println("Information as needed: " + additionalNeedsResponse);
         GlobalConstants.softAssert.assertEquals(additionalNeedsResponse, additionalNeeds);
         GlobalConstants.softAssert.assertAll("Validate information as needed fail");
+    }
+
+    public void validateForApiSchema() {
+        try {
+            String jsonSchema = GlobalConstants.readSchemas("json");
+            JSONObject rawSchema = new JSONObject(new JSONTokener(jsonSchema));
+            Schema schema = SchemaLoader.load(rawSchema);
+            try {
+                schema.validate(new JSONObject(jsonObject.toString()));
+                System.out.println("Schema validated");
+            } catch (Exception exception) {
+                throw new RuntimeException("Validate for api schema fail");
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
