@@ -5,11 +5,13 @@ import org.testng.asserts.SoftAssert;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Properties;
 
 public class GlobalConstants {
     public static SoftAssert softAssert = new SoftAssert();
-    public static final String JSON = "application/json";
+    public static final String JSON_HEADER = "application/json";
 
     public static String loadProperties(String fileName, String value) {
         Properties properties;
@@ -21,6 +23,10 @@ public class GlobalConstants {
             throw new RuntimeException(e);
         }
         return properties.getProperty(value);
+    }
+
+    public static String readSchemas(String fileExtension) throws IOException {
+        return new String(Files.readAllBytes(Paths.get("src/test/java/schemas/Schema.".concat(fileExtension))));
     }
 
     public static String jsonFormat(String firstname,
