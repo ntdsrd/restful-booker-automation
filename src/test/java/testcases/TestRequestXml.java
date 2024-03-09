@@ -26,6 +26,8 @@ public class TestRequestXml {
     public void testGetRequestXml() {
         //send get request
         getBookingXml.sendGetRequest();
+        //validate first name
+        getBookingXml.validateFirstName(GlobalConstants.loadProperties("TestData", "firstname"));
         System.out.println("--------------------------------------------------");
     }
 
