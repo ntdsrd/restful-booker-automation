@@ -48,7 +48,12 @@ public class CreateBookingJson {
             String jsonSchema = GlobalConstants.readSchemas("json");
             JSONObject rawSchema = new JSONObject(new JSONTokener(jsonSchema));
             Schema schema = SchemaLoader.load(rawSchema);
-            schema.validate(new JSONObject(jsonObject.get("booking").toString()));
+            try {
+                schema.validate(new JSONObject(jsonObject.get("booking").toString()));
+                System.out.println("Schema validated");
+            } catch (Exception exception) {
+                throw new RuntimeException("Validate for api schema fail");
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
