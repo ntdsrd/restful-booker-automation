@@ -37,6 +37,8 @@ public class TestRequestXml {
     public void testPutRequestXml() {
         //send put request
         updateBookingXml.sendPutRequest();
+        //validate information as needed
+        updateBookingXml.validateInformationAsNeeded(GlobalConstants.loadProperties("TestData", "additionalneeds"));
         System.out.println("--------------------------------------------------");
     }
 }
