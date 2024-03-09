@@ -1,5 +1,6 @@
 package testcases;
 
+import actions.commons.GlobalConstants;
 import actions.xml.CreateBookingXml;
 import actions.xml.GetBookingXml;
 import actions.xml.UpdateBookingXml;
@@ -16,6 +17,8 @@ public class TestRequestXml {
         createBookingXml.sendPostRequest();
         //get booking id
         createBookingXml.getBookingId();
+        //validate status code
+        createBookingXml.validateStatusCode(GlobalConstants.loadProperties("TestData", "statusCode"));
         System.out.println("--------------------------------------------------");
     }
 
