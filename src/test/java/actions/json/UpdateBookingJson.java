@@ -13,7 +13,7 @@ public class UpdateBookingJson {
                 .contentType(GlobalConstants.JSON_HEADER)
                 .accept(GlobalConstants.JSON_HEADER)
                 .basicAuth(GlobalConstants.loadProperties("Prod", "username"), GlobalConstants.loadProperties("Prod", "password"))
-                .body(GlobalConstants.jsonFormat(GlobalConstants.loadProperties("prod", "firstname"),
+                .body(GlobalConstants.jsonFormat(GlobalConstants.loadProperties("Prod", "firstname"),
                         GlobalConstants.loadProperties("Prod", "lastname"),
                         GlobalConstants.loadProperties("Prod", "totalprice"),
                         GlobalConstants.loadProperties("Prod", "depositpaid"),
