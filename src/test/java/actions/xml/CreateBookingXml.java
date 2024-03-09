@@ -8,10 +8,11 @@ import org.json.XML;
 
 public class CreateBookingXml {
     public static String bookingId;
+    HttpResponse<String> response;
     JSONObject jsonObject;
 
     public void sendPostRequest() {
-        HttpResponse<String> response = Unirest.post(GlobalConstants.loadProperties("Prod", "url"))
+        response = Unirest.post(GlobalConstants.loadProperties("Prod", "url"))
                 .contentType(GlobalConstants.XML_CONTENT_TYPE)
                 .accept(GlobalConstants.XML_ACCEPT)
                 .body(GlobalConstants.xmlFormat(GlobalConstants.loadProperties("Prod", "firstname"),
@@ -29,5 +30,12 @@ public class CreateBookingXml {
     public void getBookingId() {
         bookingId = jsonObject.getJSONObject("created-booking").get("bookingid").toString();
         System.out.println("Booking id: " + bookingId);
+    }
+
+    public void validateStatusCode(String statusCode) {
+        String statusCodeResponse = String.valueOf(response.getStatus());
+        System.out.println("Status code: " + statusCodeResponse + " " + response.getStatusText());
+        GlobalConstants.softAssert.assertEquals(statusCodeResponse, statusCode);
+        GlobalConstants.softAssert.assertAll("Validate status code fail");
     }
 }
