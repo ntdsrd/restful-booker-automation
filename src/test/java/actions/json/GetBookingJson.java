@@ -3,7 +3,12 @@ package actions.json;
 import actions.commons.GlobalConstants;
 import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;
+import org.everit.json.schema.Schema;
+import org.everit.json.schema.loader.SchemaLoader;
 import org.json.JSONObject;
+import org.json.JSONTokener;
+
+import java.io.IOException;
 
 public class GetBookingJson {
     JSONObject jsonObject;
@@ -28,5 +33,16 @@ public class GetBookingJson {
         System.out.println("Last name: " + lastNameResponse);
         GlobalConstants.softAssert.assertEquals(lastNameResponse, lastName);
         GlobalConstants.softAssert.assertAll("Validate last name fail");
+    }
+
+    public void validateForApiSchema() {
+        try {
+            String jsonSchema = GlobalConstants.readSchemas("json");
+            JSONObject rawSchema = new JSONObject(new JSONTokener(jsonSchema));
+            Schema schema = SchemaLoader.load(rawSchema);
+            schema.validate(new JSONObject(jsonObject.toString()));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
