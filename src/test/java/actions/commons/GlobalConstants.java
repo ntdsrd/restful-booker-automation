@@ -12,6 +12,8 @@ import java.util.Properties;
 public class GlobalConstants {
     public static SoftAssert softAssert = new SoftAssert();
     public static final String JSON_HEADER = "application/json";
+    public static final String XML_CONTENT_TYPE = "text/xml";
+    public static final String XML_ACCEPT = "application/xml";
 
     public static String loadProperties(String fileName, String value) {
         Properties properties;
@@ -47,5 +49,25 @@ public class GlobalConstants {
                 "  },\n" +
                 "  \"additionalneeds\": \"" + additionalneeds + "\"\n" +
                 "}";
+    }
+
+    public static String xmlFormat(String firstname,
+                                   String lastname,
+                                   String totalprice,
+                                   String depositpaid,
+                                   String checkin,
+                                   String checkout,
+                                   String additionalneeds) {
+        return "<booking>\n" +
+                "    <firstname>" + firstname + "</firstname>\n" +
+                "    <lastname>" + lastname + "</lastname>\n" +
+                "    <totalprice>" + totalprice + "</totalprice>\n" +
+                "    <depositpaid>" + depositpaid + "</depositpaid>\n" +
+                "    <bookingdates>\n" +
+                "        <checkin>" + checkin + "</checkin>\n" +
+                "        <checkout>" + checkout + "</checkout>\n" +
+                "    </bookingdates>\n" +
+                "    <additionalneeds>" + additionalneeds + "</additionalneeds>\n" +
+                "</booking>";
     }
 }
