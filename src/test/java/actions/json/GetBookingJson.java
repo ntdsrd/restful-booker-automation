@@ -37,7 +37,7 @@ public class GetBookingJson {
 
     public void validateForApiSchema() {
         try {
-            String jsonSchema = GlobalConstants.readSchemas("json");
+            String jsonSchema = GlobalConstants.jsonSchema("json");
             JSONObject rawSchema = new JSONObject(new JSONTokener(jsonSchema));
             Schema schema = SchemaLoader.load(rawSchema);
             try {
