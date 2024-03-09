@@ -19,6 +19,8 @@ public class TestRequestJson {
         createBookingJson.getBookingId();
         //validate status code
         createBookingJson.validateStatusCode(GlobalConstants.loadProperties("TestData", "statusCode"));
+        //validate for api schema
+        createBookingJson.validateForApiSchema();
         System.out.println();
     }
 
