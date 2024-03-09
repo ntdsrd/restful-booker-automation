@@ -3,7 +3,12 @@ package actions.json;
 import actions.commons.GlobalConstants;
 import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;
+import org.everit.json.schema.Schema;
+import org.everit.json.schema.loader.SchemaLoader;
 import org.json.JSONObject;
+import org.json.JSONTokener;
+
+import java.io.IOException;
 
 public class CreateBookingJson {
     public static String bookingId;
@@ -12,8 +17,8 @@ public class CreateBookingJson {
 
     public void postRequest() {
         response = Unirest.post(GlobalConstants.loadProperties("Prod", "url"))
-                .contentType(GlobalConstants.JSON)
-                .accept(GlobalConstants.JSON)
+                .contentType(GlobalConstants.JSON_HEADER)
+                .accept(GlobalConstants.JSON_HEADER)
                 .body(GlobalConstants.jsonFormat(GlobalConstants.loadProperties("Prod", "firstname"),
                         GlobalConstants.loadProperties("Prod", "lastname"),
                         GlobalConstants.loadProperties("Prod", "totalprice"),
@@ -36,5 +41,16 @@ public class CreateBookingJson {
         System.out.println("Status code: " + statusCodeResponse + " " + response.getStatusText());
         GlobalConstants.softAssert.assertEquals(statusCodeResponse, statusCode);
         GlobalConstants.softAssert.assertAll("Validate status code fail");
+    }
+
+    public void validateForApiSchema() {
+        try {
+            String jsonSchema = GlobalConstants.readSchemas("json");
+            JSONObject rawSchema = new JSONObject(new JSONTokener(jsonSchema));
+            Schema schema = SchemaLoader.load(rawSchema);
+            schema.validate(new JSONObject(jsonObject.get("booking").toString()));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
