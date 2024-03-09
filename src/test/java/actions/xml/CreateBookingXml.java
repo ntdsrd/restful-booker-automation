@@ -5,6 +5,18 @@ import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;
 import org.json.JSONObject;
 import org.json.XML;
+import org.xml.sax.SAXException;
+
+import javax.xml.XMLConstants;
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+import javax.xml.validation.Validator;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class CreateBookingXml {
     public static String bookingId;
@@ -37,5 +49,25 @@ public class CreateBookingXml {
         System.out.println("Status code: " + statusCodeResponse + " " + response.getStatusText());
         GlobalConstants.softAssert.assertEquals(statusCodeResponse, statusCode);
         GlobalConstants.softAssert.assertAll("Validate status code fail");
+    }
+
+    public void validateForApiSchema() {
+        Path path = Paths.get(GlobalConstants.XML_RESPONSE);
+        try {
+            Files.delete(path);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            Files.createFile(path);
+            Files.write(path, response.getBody().getBytes());
+            SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+            Schema schema = schemaFactory.newSchema(new File(GlobalConstants.xmlSchema("Post")));
+            Validator validator = schema.newValidator();
+            validator.validate(new StreamSource(GlobalConstants.XML_RESPONSE));
+            System.out.println("Schema validated");
+        } catch (IOException | SAXException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
