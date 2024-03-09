@@ -10,8 +10,8 @@ public class UpdateBookingJson {
 
     public void putRequest() {
         HttpResponse<String> response = Unirest.put(GlobalConstants.loadProperties("Prod", "url").concat("/" + CreateBookingJson.bookingId))
-                .contentType(GlobalConstants.JSON)
-                .accept(GlobalConstants.JSON)
+                .contentType(GlobalConstants.JSON_HEADER)
+                .accept(GlobalConstants.JSON_HEADER)
                 .basicAuth(GlobalConstants.loadProperties("Prod", "username"), GlobalConstants.loadProperties("Prod", "password"))
                 .body(GlobalConstants.jsonFormat(GlobalConstants.loadProperties("prod", "firstname"),
                         GlobalConstants.loadProperties("Prod", "lastname"),
