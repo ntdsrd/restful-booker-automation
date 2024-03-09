@@ -10,7 +10,7 @@ public class GetBookingJson {
 
     public void getRequest() {
         HttpResponse<String> response = Unirest.get(GlobalConstants.loadProperties("Prod", "url").concat("/" + CreateBookingJson.bookingId))
-                .accept(GlobalConstants.JSON)
+                .accept(GlobalConstants.JSON_HEADER)
                 .asString();
         jsonObject = new JSONObject(response.getBody());
         System.out.println("Get: " + response.getBody());
