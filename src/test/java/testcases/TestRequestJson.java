@@ -43,5 +43,7 @@ public class TestRequestJson {
         updateBookingJson.putRequest();
         //validate information as needed
         updateBookingJson.validateInformationAsNeeded(GlobalConstants.loadProperties("TestData", "additionalneeds"));
+        //validate for api schema
+        updateBookingJson.validateForApiSchema();
     }
 }
