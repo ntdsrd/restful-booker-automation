@@ -32,6 +32,8 @@ public class TestRequestJson {
         getBookingJson.validateFirstName(GlobalConstants.loadProperties("TestData", "firstname"));
         //validate last name
         getBookingJson.validateLastName(GlobalConstants.loadProperties("TestData", "lastname"));
+        //validate for api schema
+        getBookingJson.validateForApiSchema();
         System.out.println();
     }
 
