@@ -28,6 +28,8 @@ public class TestRequestXml {
         getBookingXml.sendGetRequest();
         //validate first name
         getBookingXml.validateFirstName(GlobalConstants.loadProperties("TestData", "firstname"));
+        //validate last name
+        getBookingXml.validateLastName(GlobalConstants.loadProperties("TestData", "lastname"));
         System.out.println("--------------------------------------------------");
     }
 
