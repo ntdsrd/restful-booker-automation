@@ -5,7 +5,7 @@ import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;
 
 public class CreateBookingXml {
-    public void postRequest() {
+    public void sendPostRequest() {
         HttpResponse<String> response = Unirest.post(GlobalConstants.loadProperties("Prod", "url"))
                 .contentType(GlobalConstants.XML_CONTENT_TYPE)
                 .accept(GlobalConstants.XML_ACCEPT)

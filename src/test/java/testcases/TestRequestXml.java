@@ -9,6 +9,6 @@ public class TestRequestXml {
     @Test(description = "Post: CreateBookingXml")
     public void testPostRequestXml() {
         //post request
-        createBookingXml.postRequest();
+        createBookingXml.sendPostRequest();
     }
 }

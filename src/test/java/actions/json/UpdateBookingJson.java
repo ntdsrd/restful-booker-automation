@@ -13,7 +13,7 @@ import java.io.IOException;
 public class UpdateBookingJson {
     JSONObject jsonObject;
 
-    public void putRequest() {
+    public void sendPutRequest() {
         HttpResponse<String> response = Unirest.put(GlobalConstants.loadProperties("Prod", "url").concat("/" + CreateBookingJson.bookingId))
                 .contentType(GlobalConstants.JSON_HEADER)
                 .accept(GlobalConstants.JSON_HEADER)

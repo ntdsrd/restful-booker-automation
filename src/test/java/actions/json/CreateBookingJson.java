@@ -15,7 +15,7 @@ public class CreateBookingJson {
     HttpResponse<String> response;
     JSONObject jsonObject;
 
-    public void postRequest() {
+    public void sendPostRequest() {
         response = Unirest.post(GlobalConstants.loadProperties("Prod", "url"))
                 .contentType(GlobalConstants.JSON_HEADER)
                 .accept(GlobalConstants.JSON_HEADER)

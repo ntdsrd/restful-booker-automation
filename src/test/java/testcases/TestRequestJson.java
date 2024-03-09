@@ -14,7 +14,7 @@ public class TestRequestJson {
     @Test(description = "Post: CreateBookingJson")
     public void testPostRequestJson() {
         //post request
-        createBookingJson.postRequest();
+        createBookingJson.sendPostRequest();
         //get booking id
         createBookingJson.getBookingId();
         //validate status code
@@ -27,7 +27,7 @@ public class TestRequestJson {
     @Test(description = "Get: GetBookingJson", dependsOnMethods = {"testPostRequestJson"})
     public void testGetRequestJson() {
         //get request
-        getBookingJson.getRequest();
+        getBookingJson.sendGetRequest();
         //validate first name
         getBookingJson.validateFirstName(GlobalConstants.loadProperties("TestData", "firstname"));
         //validate last name
@@ -40,7 +40,7 @@ public class TestRequestJson {
     @Test(description = "Put: UpdateBookingJson", dependsOnMethods = {"testPostRequestJson"})
     public void testPutRequestJson() {
         //put request
-        updateBookingJson.putRequest();
+        updateBookingJson.sendPutRequest();
         //validate information as needed
         updateBookingJson.validateInformationAsNeeded(GlobalConstants.loadProperties("TestData", "additionalneeds"));
         //validate for api schema
