@@ -12,7 +12,7 @@ public class TestRequestXml {
 
     @Test(description = "Post: CreateBookingXml")
     public void testPostRequestXml() {
-        //post request
+        //send post request
         createBookingXml.sendPostRequest();
         //get booking id
         createBookingXml.getBookingId();
@@ -21,14 +21,14 @@ public class TestRequestXml {
 
     @Test(description = "Get: GetBookingXml", dependsOnMethods = {"testPostRequestXml"})
     public void testGetRequestXml() {
-        //get request
+        //send get request
         getBookingXml.sendGetRequest();
         System.out.println("--------------------------------------------------");
     }
 
     @Test(description = "Put: UpdateBookingXml", dependsOnMethods = {"testPostRequestXml"})
     public void testPutRequestXml() {
-        //put request
+        //send put request
         updateBookingXml.sendPutRequest();
         System.out.println("--------------------------------------------------");
     }

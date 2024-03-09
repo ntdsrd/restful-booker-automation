@@ -13,7 +13,7 @@ public class TestRequestJson {
 
     @Test(description = "Post: CreateBookingJson")
     public void testPostRequestJson() {
-        //post request
+        //send post request
         createBookingJson.sendPostRequest();
         //get booking id
         createBookingJson.getBookingId();
@@ -21,12 +21,12 @@ public class TestRequestJson {
         createBookingJson.validateStatusCode(GlobalConstants.loadProperties("TestData", "statusCode"));
         //validate for api schema
         createBookingJson.validateForApiSchema();
-        System.out.println();
+        System.out.println("--------------------------------------------------");
     }
 
     @Test(description = "Get: GetBookingJson", dependsOnMethods = {"testPostRequestJson"})
     public void testGetRequestJson() {
-        //get request
+        //send get request
         getBookingJson.sendGetRequest();
         //validate first name
         getBookingJson.validateFirstName(GlobalConstants.loadProperties("TestData", "firstname"));
@@ -34,16 +34,17 @@ public class TestRequestJson {
         getBookingJson.validateLastName(GlobalConstants.loadProperties("TestData", "lastname"));
         //validate for api schema
         getBookingJson.validateForApiSchema();
-        System.out.println();
+        System.out.println("--------------------------------------------------");
     }
 
     @Test(description = "Put: UpdateBookingJson", dependsOnMethods = {"testPostRequestJson"})
     public void testPutRequestJson() {
-        //put request
+        //send put request
         updateBookingJson.sendPutRequest();
         //validate information as needed
         updateBookingJson.validateInformationAsNeeded(GlobalConstants.loadProperties("TestData", "additionalneeds"));
         //validate for api schema
         updateBookingJson.validateForApiSchema();
+        System.out.println("--------------------------------------------------");
     }
 }
