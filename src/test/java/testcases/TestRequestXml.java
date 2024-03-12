@@ -43,6 +43,8 @@ public class TestRequestXml {
         updateBookingXml.sendPutRequest();
         //validate information as needed
         updateBookingXml.validateInformationAsNeeded(GlobalConstants.loadProperties("TestData", "additionalneeds"));
+        //validate for api schema
+        updateBookingXml.validateForApiSchema();
         System.out.println("--------------------------------------------------");
     }
 }
