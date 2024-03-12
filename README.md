@@ -3,7 +3,7 @@ This project used Java programming language, built-in Maven structure, following
 
 > Open pom.xml for more details about plugins and dependencies
 ## Allure report preview
-![allure report]https://github.com/ntdsrd/restful-booker-automation/blob/master/reports/allure-report.png
+![allure report](https://github.com/ntdsrd/restful-booker-automation/blob/master/reports/allure-report.png)
 ## How to run the project
 Clone project
 ```
