@@ -54,18 +54,18 @@ public class CreateBookingXml {
     public void validateForApiSchema() {
         Path path = Paths.get(GlobalConstants.XML_RESPONSE);
         try {
-            Files.delete(path);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            Files.createFile(path);
+            if (Files.exists(path)) {
+                Files.delete(path);
+            } else {
+                Files.createFile(path);
+            }
             Files.write(path, response.getBody().getBytes());
             SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
             Schema schema = schemaFactory.newSchema(new File(GlobalConstants.xmlSchema("Post")));
             Validator validator = schema.newValidator();
             validator.validate(new StreamSource(GlobalConstants.XML_RESPONSE));
             System.out.println("Schema validated");
+            Files.delete(path);
         } catch (IOException | SAXException e) {
             throw new RuntimeException(e);
         }
