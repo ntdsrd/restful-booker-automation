@@ -27,7 +27,7 @@ mvn clean test
 Install allure-commandline (Install by npm)
 ```
 npm install -g allure-commandline
-``
+```
 Go to the folder which had allure-results (reports folder)
 
 Generate allure report
