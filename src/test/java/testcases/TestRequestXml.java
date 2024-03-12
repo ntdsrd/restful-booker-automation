@@ -32,6 +32,8 @@ public class TestRequestXml {
         getBookingXml.validateFirstName(GlobalConstants.loadProperties("TestData", "firstname"));
         //validate last name
         getBookingXml.validateLastName(GlobalConstants.loadProperties("TestData", "lastname"));
+        //validate for api schema
+        getBookingXml.validateForApiSchema();
         System.out.println("--------------------------------------------------");
     }
 
